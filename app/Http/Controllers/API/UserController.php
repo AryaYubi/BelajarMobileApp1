@@ -103,16 +103,19 @@ class UserController extends Controller
         );
     }
 
-    public function update(Request $request)
+    public function updateProfile(Request $request)
     {
         $data = $request->all();
 
         $user = Auth::user();
         $user->update($data);
 
-        return ResponseFormatter::success(
-            $user,
-            'User profile updated successfully'
-        );
+        return ResponseFormatter::success($user, 'User profile updated successfully');
+    }
+
+    public function logout(Request $request){
+        $token = $request->user()->currentAccessToken()->delete();
+
+        return ResponseFormatter::success($token, 'Token Revoked successfully');
     }
 }
