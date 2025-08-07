@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('transactions_id');
             $table->bigInteger('quantity');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
